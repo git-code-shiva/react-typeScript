@@ -1,22 +1,39 @@
-.login_container {
-  display: flex;
-  justify-content: center;
-  margin-top: 4rem;
-}
-
-.login_label_container,
-.login_input_container {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  text-align: left;
-}
-
-.login_form {
+/* .login_form {
   border: 1px solid black;
   border-radius: 5px;
   background-color: bisque;
   height: 50vh;
   width: 50%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  text-align: center;
+} */
+
+.login_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(67, 67, 65);
+}
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: rgba(236, 238, 238, 0.905);
+  box-shadow: 0 2px 6px rgba(173, 170, 170, 0.973);
+}
+
+.login_form .MuiTextField-root {
+  margin-bottom: 16px;
+}
+
+.login_form .MuiButton-root {
+  margin-top: 16px;
 }

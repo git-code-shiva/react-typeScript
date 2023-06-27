@@ -1,3 +1,10 @@
 .page_header {
+  height: 45px;
   margin-top: 20px;
+  background-color: rgb(186, 119, 80);
+  text-align: end;
+  padding: 15px;
+}
+.home_icon {
+  margin-right: 15px;
 }

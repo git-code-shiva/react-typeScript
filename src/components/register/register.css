@@ -1,24 +1,25 @@
 .reg_form {
   display: flex;
-  justify-content: center;
-  text-align: left;
-  border: 1px solid black;
-  border-radius: 5px;
-  background-color: bisque;
-  height: 50vh;
-  width: 50%;
-  margin: 0 auto;
-}
-
-.reg_label_container,
-.reg_inp_container {
-  display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 4rem;
+  border-radius: 5px;
+  background-color: rgba(236, 238, 238, 0.905);
+  width: 40%;
+  margin: 0 auto;
+  box-shadow: 0 2px 6px rgba(173, 170, 170, 0.973);
+  padding: 16px;
+}
+.register_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(65, 66, 67);
+}
+.reg_form .MuiTextField-root {
+  margin-bottom: 16px;
 }
 
-.reg_btn {
-  margin: 0 auto;
-  margin-top: 25px;
+.reg_form .MuiButton-root {
+  margin-top: 16px;
 }

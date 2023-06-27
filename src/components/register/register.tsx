@@ -3,6 +3,9 @@ import "./register.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import TextField from "@mui/material/TextField/TextField";
+import { Button } from "@mui/material";
+// import { registerUser } from "../../services/user.service";
 
 interface IFormInput {
   firstName: string;
@@ -25,12 +28,29 @@ const Register = () => {
   const navigate = useNavigate();
 
   const formSubmit: SubmitHandler<IFormInput> = async (data) => {
-    console.log(data);
+    // console.log(data);
+    // const res = await registerUser(data);
+
+    const response = await axios.post(
+      "http://localhost:5000/employee/register",
+      data
+    );
     try {
-      await axios.post("http://localhost:5000/employee/register", data);
-      alert("Form Submit Sucessfully");
-      navigate("/");
+      const result = response.data.toString();
+      // console.log(result);
+
+      if (result.match("E11000 duplicate key error collection")) {
+        console.log(result.data);
+        alert("Email exist please Login");
+        navigate("/");
+      }
+      // console.log(result.data);
+      else {
+        alert("Form Submit Sucessfully");
+        navigate("/");
+      }
     } catch (error) {
+      console.log(error);
       alert(error);
     }
   };
@@ -38,54 +58,47 @@ const Register = () => {
   return (
     <>
       <div className="register_container">
-        <header>
-          <h2>Registration</h2>
-        </header>
-
         <form onSubmit={handleSubmit(formSubmit)} className="reg_form">
-          <div className="reg_label_container">
-            <label htmlFor="fname">First Name:</label>
-            <label htmlFor="lname">Last Name:</label>
-            <label htmlFor="email">Email:</label>
-            <label htmlFor="designation">Designation:</label>
-            <label htmlFor="password">Password:</label>
-          </div>
-
-          <div className="reg_inp_container">
-            <input
-              type="text"
-              id="fname"
-              placeholder="Enter Your First Name"
-              {...register("firstName")}
-            />
-            <input
-              type="text"
-              id="lname"
-              placeholder="Enter Your Last Name"
-              {...register("lastName")}
-            />
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter Your Email"
-              {...register("email")}
-            />
-            <input
-              type="text"
-              id="designation"
-              placeholder="Enter Your Role"
-              {...register("designation")}
-            />
-            <input
-              type="password"
-              id="password"
-              placeholder="Choose Password"
-              {...register("password")}
-            />
-            <button className="reg_btn" type="submit">
-              Register
-            </button>
-          </div>
+          <h3 style={{ fontFamily: "cursive" }}>Registration</h3>
+          <TextField
+            id="fname"
+            label="First Name"
+            variant="outlined"
+            required
+            {...register("firstName")}
+          />
+          <TextField
+            id="lname"
+            label="Last Name"
+            variant="outlined"
+            required
+            {...register("lastName")}
+          />
+          <TextField
+            id="email"
+            label="Email"
+            variant="outlined"
+            required
+            {...register("email")}
+          />
+          <TextField
+            id="designation"
+            label="Designation"
+            variant="outlined"
+            required
+            {...register("designation")}
+          />
+          <TextField
+            id="password"
+            label="Password"
+            variant="outlined"
+            required
+            type="password"
+            {...register("password")}
+          />
+          <Button type="submit" variant="contained">
+            Register
+          </Button>
         </form>
       </div>
     </>

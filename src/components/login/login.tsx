@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { TokenStorage } from "../../App";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button, TextField } from "@mui/material";
 
 interface IFormInput {
   email: string;
@@ -28,6 +29,9 @@ const Login = () => {
           if (res.data == "Wrong Credentials") {
             alert("Wrong Credential");
             navigate("/register");
+          } else {
+            setToken(res.data.token);
+            navigate("/landingPage");
           }
         });
 
@@ -42,29 +46,27 @@ const Login = () => {
   };
   return (
     <>
-      <h3>Login</h3>
-      <form onSubmit={handleSubmit(formSubmit)} className="login_form">
-        <div className="login_container">
-          <div className="login_label_container">
-            <label htmlFor="email">Email:</label>
-            <label htmlFor="password">Password:</label>
-          </div>
-
-          <div className="login_input_container">
-            <input
-              type="email"
-              placeholder="Enter Your Email"
-              {...register("email")}
-            />
-            <input
-              type="password"
-              placeholder="Enter Your Password"
-              {...register("password")}
-            />
-          </div>
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      <div className="login_container">
+        <form onSubmit={handleSubmit(formSubmit)} className="login_form">
+          <h3 style={{ fontFamily: "cursive" }}>Login</h3>
+          <TextField
+            id="email"
+            label="Email"
+            variant="outlined"
+            {...register("email")}
+          />
+          <TextField
+            id="password"
+            label="Password"
+            variant="outlined"
+            type="password"
+            {...register("password")}
+          />
+          <Button variant="contained" type="submit">
+            Login
+          </Button>
+        </form>
+      </div>
     </>
   );
 };
