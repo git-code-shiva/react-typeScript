@@ -1,0 +1,39 @@
+.card_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.card_content {
+  flex-grow: 1;
+  position: relative; /* Add this line to establish a positioning context */
+}
+
+.card_actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.card_actions svg {
+  cursor: pointer;
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.card_actions svg:hover {
+  color: #ff4081;
+}
+
+.card_date {
+  position: relative;
+  top: 8px;
+  right: 8px;
+  font-size: 12px;
+  color: gray;
+}
+
+.card {
+  user-select: none;
+}

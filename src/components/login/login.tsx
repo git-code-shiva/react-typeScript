@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./login.css";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { TokenStorage } from "../../App";
+import { TokenStorage, UserStorage } from "../../App";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
@@ -13,6 +13,7 @@ interface IFormInput {
 
 const Login = () => {
   const [token, setToken] = useContext(TokenStorage);
+  const [userDetails, setUserDetails] = useContext(UserStorage);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -31,7 +32,10 @@ const Login = () => {
             navigate("/register");
           } else {
             setToken(res.data.token);
-            navigate("/landingPage");
+            setUserDetails(res.data.employee);
+            // console.log(res.data);
+            console.log(userDetails);
+            navigate("/home");
           }
         });
 

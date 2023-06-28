@@ -4,28 +4,42 @@ import React, {
   createContext,
   useState,
 } from "react";
-import "./App.css";
+// import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "./components/register/register";
 import Login from "./components/login/login";
-import LandingPage from "./components/landingPage/landingPage";
+import HomePage from "./todos/components/homePage/homePage";
+import EditForm from "./todos/components/editPage/editForm";
+import Form from "./todos/components/form/form";
+// import LandingPage from "./components/landingPage/landingPage";
 
 export const TokenStorage = createContext<
   [string | null, Dispatch<SetStateAction<string | null>>]
 >([null, () => {}]);
+
+export const UserStorage = createContext<
+  [{ _id: string } | null, Dispatch<SetStateAction<{ _id: string } | null>>]
+>([null, () => {}]);
+
 function App() {
   const [token, setToken] = useState<string | null>(null);
+  const [userDetails, setUserDetails] = useState<{ _id: string } | null>(null);
   return (
     <div className="App">
-      <TokenStorage.Provider value={[token, setToken]}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/landingPage" element={<LandingPage />} />
-          </Routes>
-        </BrowserRouter>
-      </TokenStorage.Provider>
+      <UserStorage.Provider value={[userDetails, setUserDetails]}>
+        <TokenStorage.Provider value={[token, setToken]}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              {/* <Route path="/landingPage" element={<LandingPage />} /> */}
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/editPage/:id" element={<EditForm onClose />} />
+              <Route path="/form" element={<Form />} />
+            </Routes>
+          </BrowserRouter>
+        </TokenStorage.Provider>
+      </UserStorage.Provider>
     </div>
   );
 }

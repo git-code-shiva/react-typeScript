@@ -1,0 +1,38 @@
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+
+.home,
+.add,
+.logout {
+  cursor: pointer;
+}
+
+.home:hover,
+.add:hover,
+.logout:hover {
+  color: #ff4081;
+}
+
+.home {
+  margin-right: 10px;
+}
+
+.add {
+  margin-right: 10px;
+}
+
+.logout {
+  display: flex;
+  align-items: center;
+}
+
+.logout img {
+  height: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+}
