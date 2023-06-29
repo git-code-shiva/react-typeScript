@@ -2,7 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
+  background-image: url("../../../assets/header.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   padding: 10px;
 }
 
@@ -10,12 +13,6 @@
 .add,
 .logout {
   cursor: pointer;
-}
-
-.home:hover,
-.add:hover,
-.logout:hover {
-  color: #ff4081;
 }
 
 .home {
@@ -35,4 +32,7 @@
   height: 30px;
   cursor: pointer;
   margin-left: 10px;
+}
+.left_group {
+  padding-left: 10px;
 }

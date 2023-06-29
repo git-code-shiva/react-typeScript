@@ -99,6 +99,9 @@ const Register = () => {
           <Button type="submit" variant="contained">
             Register
           </Button>
+          <div className="alreadyUser">
+            Already An User <a href="/">Sign In</a>{" "}
+          </div>
         </form>
       </div>
     </>

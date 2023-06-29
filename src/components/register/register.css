@@ -14,7 +14,8 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgb(65, 66, 67);
+  /* background-color: rgb(65, 66, 67); */
+  background-image: url(../../assets/4893732.webp);
 }
 .reg_form .MuiTextField-root {
   margin-bottom: 16px;

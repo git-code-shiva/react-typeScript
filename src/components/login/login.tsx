@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./login.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TokenStorage, UserStorage } from "../../App";
@@ -21,6 +21,14 @@ const Login = () => {
       password: "",
     },
   });
+
+  useEffect(() => {
+    const user = localStorage.getItem("key");
+    if (user) {
+      navigate("/");
+    }
+  }, []);
+
   const formSubmit: SubmitHandler<IFormInput> = async (data) => {
     // console.log(data);
     try {
@@ -31,13 +39,15 @@ const Login = () => {
             alert("Wrong Credential");
             navigate("/register");
           } else {
-            setToken(res.data.token);
-            setUserDetails(res.data.employee);
+            localStorage.setItem("key", JSON.stringify(res.data.employee._id));
+            localStorage.setItem("token", JSON.stringify(res.data.token));
+            setUserDetails(JSON.parse(localStorage.getItem("key") || ""));
+            setToken(JSON.parse(localStorage.getItem("token") || ""));
             // console.log(res.data);
-            console.log(userDetails);
             navigate("/home");
           }
         });
+      console.log(userDetails);
 
       // alert("Login Sucessfull");
       // navigate("/landingPage");
@@ -69,6 +79,9 @@ const Login = () => {
           <Button variant="contained" type="submit">
             Login
           </Button>
+          <div className="newUser" style={{ marginTop: 8 }}>
+            New User? <a href="/register">Register</a>
+          </div>
         </form>
       </div>
     </>

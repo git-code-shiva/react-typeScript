@@ -3,6 +3,7 @@ import React, {
   SetStateAction,
   createContext,
   useState,
+  useEffect,
 } from "react";
 // import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -22,8 +23,19 @@ export const UserStorage = createContext<
 >([null, () => {}]);
 
 function App() {
-  const [token, setToken] = useState<string | null>(null);
   const [userDetails, setUserDetails] = useState<{ _id: string } | null>(null);
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const user = localStorage.getItem("key");
+    const localStoreToken = localStorage.getItem("token");
+
+    if (user && localStoreToken) {
+      setUserDetails(JSON.parse(user));
+      setToken(JSON.parse(localStoreToken));
+    }
+  }, [userDetails, token]);
+
   return (
     <div className="App">
       <UserStorage.Provider value={[userDetails, setUserDetails]}>

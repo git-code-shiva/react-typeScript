@@ -6,6 +6,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import Fab from "@mui/material/Fab";
 
 const disableCopyPaste = (event: any) => {
   event.preventDefault();
@@ -19,20 +20,26 @@ const CardComponent = ({ post, handleDelete, handleEdit }: any) => {
   return (
     <div onCopy={disableCopyPaste} onPaste={disableCopyPaste}>
       <div className="card_container">
-        <Card className="card" sx={{ maxWidth: 345 }}>
+        <Card
+          className="card"
+          sx={{ maxWidth: 345, backgroundColor: "#fff9c4" }}
+        >
           <CardContent>
             <div className="card_date">{date}</div>
             <CardContent className="card_content">
               <Typography gutterBottom variant="h6" component="div">
                 {post.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {post.description}
-              </Typography>
+              <Typography variant="body2">{post.description}</Typography>
             </CardContent>
             <div className="card_actions">
               <EditIcon onClick={handleEdit} />
+              {/* <Fab size="medium" color="secondary" aria-label="edit">
+                <EditIcon onClick={handleEdit} />
+              </Fab> */}
+              {/* <Fab size="medium" color="secondary"> */}
               <DeleteIcon onClick={handleDelete} />
+              {/* </Fab> */}
             </div>
           </CardContent>
         </Card>
