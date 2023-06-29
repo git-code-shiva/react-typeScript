@@ -23,7 +23,7 @@ const Form = () => {
     defaultValues: {
       title: "",
       description: "",
-      userId: userDetails ? JSON.stringify(userDetails) : "",
+      userId: userDetails ? userDetails.toString() : "",
     },
   });
   // console.log(userDetails);

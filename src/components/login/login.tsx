@@ -44,6 +44,9 @@ const Login = () => {
             setUserDetails(JSON.parse(localStorage.getItem("key") || ""));
             setToken(JSON.parse(localStorage.getItem("token") || ""));
             // console.log(res.data);
+            // console.log(userDetails);
+            // console.log(typeof userDetails);
+
             navigate("/home");
           }
         });
