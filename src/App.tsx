@@ -12,6 +12,7 @@ import Login from "./components/login/login";
 import HomePage from "./todos/components/homePage/homePage";
 import EditForm from "./todos/components/editPage/editForm";
 import Form from "./todos/components/form/form";
+import { SnackbarProvider } from 'notistack';
 // import LandingPage from "./components/landingPage/landingPage";
 
 export const TokenStorage = createContext<
@@ -40,6 +41,7 @@ function App() {
     <div className="App">
       <UserStorage.Provider value={[userDetails, setUserDetails]}>
         <TokenStorage.Provider value={[token, setToken]}>
+          <SnackbarProvider maxSnack={1}>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Login />} />
@@ -50,6 +52,7 @@ function App() {
               <Route path="/form" element={<Form />} />
             </Routes>
           </BrowserRouter>
+          </SnackbarProvider>
         </TokenStorage.Provider>
       </UserStorage.Provider>
     </div>

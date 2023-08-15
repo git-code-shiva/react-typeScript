@@ -9,6 +9,7 @@ import TodoHeader from "../todoHeader/todoHeader";
 import { TokenStorage, UserStorage } from "../../../App";
 // import { registerUser } from "../../services/user.service";
 import WithAuth from "../../../auth";
+import { useSnackbar } from "notistack";
 
 interface IFormInput {
   title: string;
@@ -26,6 +27,7 @@ const Form = () => {
       userId: userDetails ? userDetails.toString() : "",
     },
   });
+  const { enqueueSnackbar } = useSnackbar();
   // console.log(userDetails);
 
   const navigate = useNavigate();
@@ -36,6 +38,10 @@ const Form = () => {
         "http://localhost:5000/todos/createTodo",
         data
       );
+      enqueueSnackbar("Created", {
+        variant: 'success',
+        autoHideDuration: 3000
+      });
       console.log(response.data);
       navigate("/home");
     } catch (error) {

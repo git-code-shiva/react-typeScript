@@ -5,6 +5,7 @@ import { TokenStorage, UserStorage } from "../../App";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
+import { enqueueSnackbar, useSnackbar } from "notistack";
 
 interface IFormInput {
   email: string;
@@ -22,6 +23,8 @@ const Login = () => {
     },
   });
 
+  const { enqueueSnackbar } = useSnackbar();
+
   useEffect(() => {
     const user = localStorage.getItem("key");
     if (user) {
@@ -36,8 +39,12 @@ const Login = () => {
         .post("http://localhost:5000/employee/login", data)
         .then((res) => {
           if (res.data == "Wrong Credentials") {
-            alert("Wrong Credential");
-            navigate("/register");
+            // alert("Wrong Credential");
+            enqueueSnackbar("Wrong Credential", {
+              variant: 'error',
+              autoHideDuration: 3000
+            });
+            // navigate("/register");
           } else {
             localStorage.setItem("key", JSON.stringify(res.data.employee._id));
             localStorage.setItem("token", JSON.stringify(res.data.token));

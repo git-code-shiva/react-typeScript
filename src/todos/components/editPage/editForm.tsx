@@ -7,6 +7,7 @@ import TodoHeader from "../todoHeader/todoHeader";
 import "./editForm.css";
 import { TokenStorage } from "../../../App";
 import WithAuth from "../../../auth";
+import { useSnackbar } from "notistack";
 
 const EditPage = ({ onClose }: { onClose: any }) => {
   const [title, setTitle] = useState<string>("");
@@ -14,6 +15,7 @@ const EditPage = ({ onClose }: { onClose: any }) => {
   const { id } = useParams<{ id: string }>();
   const [token] = useContext(TokenStorage);
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     axios
@@ -35,6 +37,10 @@ const EditPage = ({ onClose }: { onClose: any }) => {
     await axios
       .put(`http://localhost:5000/todos/${id}`, updatedNote)
       .then(() => {
+        enqueueSnackbar("Saved", {
+          variant: 'success',
+          autoHideDuration: 3000
+        });
         navigate("/home");
       })
       .catch((error) => {
