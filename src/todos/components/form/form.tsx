@@ -10,6 +10,7 @@ import { TokenStorage, UserStorage } from "../../../App";
 // import { registerUser } from "../../services/user.service";
 import WithAuth from "../../../auth";
 import { useSnackbar } from "notistack";
+import { constants } from "../../../config/constants";
 
 interface IFormInput {
   title: string;
@@ -35,7 +36,7 @@ const Form = () => {
   const formSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/todos/createTodo",
+        `${constants.BASE_URL}/todos/createTodo`,
         data
       );
       enqueueSnackbar("Created", {

@@ -8,6 +8,7 @@ import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, D
 import "./homePage.css";
 import WithAuth from "../../../auth";
 import { useSnackbar } from "notistack";
+import { constants } from "../../../config/constants";
 
 const HomePage = () => {
   const [post, setPost] = useState<any[]>([]);
@@ -19,7 +20,7 @@ const HomePage = () => {
 
   const getData = async () => {
     const postResponse = await axios.get(
-      `http://localhost:5000/todos/getTodo?userId=${userDetails}`
+      `${constants.BASE_URL}/todos/getTodo?userId=${userDetails}`
     );
     console.log(postResponse);
     setPost(postResponse.data);
@@ -48,7 +49,7 @@ const HomePage = () => {
     setDeleteDialogOpen(false); // Close the dialog
 
     try {
-      await axios.delete(`http://localhost:5000/todos/${noteDeleteId}`);
+      await axios.delete(`${constants.BASE_URL}/todos/${noteDeleteId}`);
       setPost(post.filter((post) => post._id !== noteDeleteId));
       enqueueSnackbar("Note deleted successfully", { variant: "success" });
     } catch (error) {
@@ -92,24 +93,24 @@ const HomePage = () => {
             </>
           </Box>
           <Dialog
-        open={deleteDialogOpen}
-        onClose={() => setDeleteDialogOpen(false)}
-      >
-        <DialogTitle>Confirm Deletion</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Are you sure you want to delete this note?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDeleteConfirmation} color="primary">
-            Yes
-          </Button>
-          <Button onClick={() => setDeleteDialogOpen(false)} color="primary">
-            No
-          </Button>
-        </DialogActions>
-      </Dialog>
+            open={deleteDialogOpen}
+            onClose={() => setDeleteDialogOpen(false)}
+          >
+            <DialogTitle>Confirm Deletion</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Are you sure you want to delete this note?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDeleteConfirmation} color="primary">
+                Yes
+              </Button>
+              <Button onClick={() => setDeleteDialogOpen(false)} color="primary">
+                No
+              </Button>
+            </DialogActions>
+          </Dialog>
         </>
       );
     } else {

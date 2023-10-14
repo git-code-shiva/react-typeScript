@@ -8,6 +8,7 @@ import "./editForm.css";
 import { TokenStorage } from "../../../App";
 import WithAuth from "../../../auth";
 import { useSnackbar } from "notistack";
+import { constants } from "../../../config/constants";
 
 const EditPage = ({ onClose }: { onClose: any }) => {
   const [title, setTitle] = useState<string>("");
@@ -35,7 +36,7 @@ const EditPage = ({ onClose }: { onClose: any }) => {
     event.preventDefault();
     const updatedNote = { title, description };
     await axios
-      .put(`http://localhost:5000/todos/${id}`, updatedNote)
+      .put(`${constants.BASE_URL}/todos/${id}`, updatedNote)
       .then(() => {
         enqueueSnackbar("Saved", {
           variant: 'success',

@@ -1,3 +1,3 @@
 export const constants = {
-  BASE_URL: "http://localhost:5000/employee",
+  BASE_URL: "https://nest-js-crus.onrender.com",
 };

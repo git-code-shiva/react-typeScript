@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { AlertColor } from "@mui/material/Alert";
+import { constants } from "../../config/constants";
 
 // import { registerUser } from "../../services/user.service";
 
@@ -47,7 +48,7 @@ const Register = () => {
     // const res = await registerUser(data);
 
     const response = await axios.post(
-      "http://localhost:5000/employee/register",
+      `${constants.BASE_URL}/employee/register`,
       data
     );
     try {

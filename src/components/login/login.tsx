@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import { enqueueSnackbar, useSnackbar } from "notistack";
+import { constants } from "../../config/constants";
 
 interface IFormInput {
   email: string;
@@ -36,7 +37,7 @@ const Login = () => {
     // console.log(data);
     try {
       const response = await axios
-        .post("http://localhost:5000/employee/login", data)
+        .post(`${constants.BASE_URL}/employee/login`, data)
         .then((res) => {
           if (res.data == "Wrong Credentials") {
             // alert("Wrong Credential");
