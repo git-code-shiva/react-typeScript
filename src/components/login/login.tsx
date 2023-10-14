@@ -53,8 +53,15 @@ const Login = () => {
             // console.log(res.data);
             // console.log(userDetails);
             // console.log(typeof userDetails);
+            enqueueSnackbar("Logging In", {
+              variant: 'success',
+              autoHideDuration: 3000
+            });
 
-            navigate("/home");
+            setTimeout(() => {
+              navigate("/home");
+            }, 1000);
+            // navigate("/home");
           }
         });
       console.log(userDetails);
