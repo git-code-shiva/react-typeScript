@@ -20,7 +20,7 @@ const EditPage = ({ onClose }: { onClose: any }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/todos/${id}`)
+      .get(`${constants.BASE_URL}/todos/${id}`)
       .then((response) => {
         console.log(response);
 
